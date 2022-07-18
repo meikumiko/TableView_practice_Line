@@ -71,8 +71,9 @@ class mainTableViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ serviceCollectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //轉型
         let cell = serviceCollectionView.dequeueReusableCell(withReuseIdentifier: "\(serviceCollectionViewCell.self)", for: indexPath) as! serviceCollectionViewCell
-        
+        //設定不同Section對應要顯示的資料內容
         if indexPath.section == 0{
             cell.imageView.image = UIImage(named: services[indexPath.item].image)
             cell.nameLabel.text = services[indexPath.item].name
@@ -88,7 +89,9 @@ class mainTableViewController: UITableViewController, UICollectionViewDelegate, 
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        //轉型
         let headerView = serviceCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! headerView
+        //設定Header文字
         headerView.header.text = "\(headers[indexPath.section])"
         
         return headerView
@@ -106,7 +109,6 @@ class mainTableViewController: UITableViewController, UICollectionViewDelegate, 
             UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, animations: {
                 self.nameView.alpha = 0
             })
-            
         }
     }
     
@@ -133,7 +135,7 @@ class mainTableViewController: UITableViewController, UICollectionViewDelegate, 
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(40))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading) //Header內容靠右上對齊
         section.boundarySupplementaryItems = [header]
         return section
         
